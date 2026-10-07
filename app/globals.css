@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --color-ink: #06110e;
+  --color-ink-2: #0a1a15;
+  --color-ink-3: #0f241d;
+  --color-gold: #e4b95e;
+  --color-gold-2: #f3d58f;
+  --color-mint: #3ddc97;
+  --color-rose: #f26d6d;
+  --color-paper: #f5f0e3;
+  --font-serif: Georgia, 'Times New Roman', serif;
+}
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-ink); color: var(--color-paper); font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+* { box-sizing: border-box; }
+::selection { background: var(--color-gold); color: var(--color-ink); }
+section[id] { scroll-margin-top: 72px; }
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 2px; }
+
+@layer components {
+.font-display { font-family: var(--font-serif); letter-spacing: -.02em; }
+.hero-grid { background-image: linear-gradient(rgba(228,185,94,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(228,185,94,.05) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at 30% 20%, black, transparent 75%); }
+.text-gold-gradient { background: linear-gradient(100deg, #f3d58f 0%, #e4b95e 45%, #3ddc97 130%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.card { background: linear-gradient(160deg, rgba(255,255,255,.045), rgba(255,255,255,.012)); border: 1px solid rgba(245,240,227,.09); border-radius: 22px; }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--color-gold); }
+.section-title { margin-top: 12px; font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.08; letter-spacing: -.025em; font-weight: 500; color: var(--color-paper); }
+.section-copy { margin-top: 14px; max-width: 620px; font-size: 15px; line-height: 1.7; color: #8fa39a; }
+.field-label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 600; color: #a9bbb2; }
+.input-field { width: 100%; border-radius: 12px; border: 1px solid rgba(245,240,227,.12); background: rgba(0,0,0,.25); padding: 12px 14px; color: var(--color-paper); outline: none; font-size: 14px; transition: border-color .2s, box-shadow .2s; }
+.input-field::placeholder { color: #51675d; }
+.input-field:focus { border-color: rgba(228,185,94,.6); box-shadow: 0 0 0 3px rgba(228,185,94,.1); }
+.input-field[aria-invalid="true"] { border-color: rgba(242,109,109,.7); }
+.btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; background: var(--color-gold); color: var(--color-ink); font-weight: 700; font-size: 14px; padding: 13px 22px; transition: transform .2s, background .2s, box-shadow .2s; box-shadow: 0 8px 30px rgba(228,185,94,.18); }
+.btn-gold:hover:not(:disabled) { background: var(--color-gold-2); transform: translateY(-1px); }
+.btn-gold:disabled { opacity: .45; cursor: not-allowed; }
+.btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; border: 1px solid rgba(245,240,227,.16); background: rgba(255,255,255,.03); color: var(--color-paper); font-weight: 600; font-size: 14px; padding: 13px 22px; transition: background .2s, border-color .2s; }
+.btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(228,185,94,.4); }
+.chip { border-radius: 999px; border: 1px solid rgba(245,240,227,.12); padding: 7px 14px; font-size: 12px; font-weight: 600; color: #a9bbb2; transition: all .2s; white-space: nowrap; }
+.chip:hover { color: var(--color-paper); border-color: rgba(228,185,94,.4); }
+.chip[aria-pressed="true"] { background: var(--color-gold); color: var(--color-ink); border-color: var(--color-gold); }
+input[type=range] { accent-color: var(--color-gold); width: 100%; }
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@layer components {
+  .marquee { animation: marquee 38s linear infinite; }
+  .marquee:hover { animation-play-state: paused; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } html { scroll-behavior: auto; } }
